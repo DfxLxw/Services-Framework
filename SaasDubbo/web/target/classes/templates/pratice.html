@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Test</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        function login() {
+            var username=document.getElementById("txtUserName").value;
+            var password=document.getElementById("TextBox2").value;
+            $.ajax({
+                //几个参数需要注意一下
+                type: "POST",//方法类型
+                // dataType: "json",//预期服务器返回的数据类型
+                url: "/sss" ,//url
+                contentType:"application/json",
+                data:JSON.stringify({
+                    username: username,
+                    password: password }),//注意此处
+                success:function (data) {
+                    window.location.href="/test";
+                    alert("111111111111111");
+                },
+                error : function() {
+                    alert("异常！");
+                }
+            });
+        }
+        function search() {
+            var username=document.getElementById("txtUserName").value;
+            $.ajax({
+                type:"POST",
+                dataType:"json",
+                url:"/ooo",
+                contentType:"application/json",
+                data:JSON.stringify({
+
+                    username:username
+                }),
+                success:function (data) {
+                    window.location.href="/test";
+                    alert("111111111111111");
+                },
+                error : function() {
+                    alert("异常！");
+                }
+            })
+
+        }
+    </script>
+</head>
+<body>
+<h1>Hello World...................................................</h1>
+<div id="form-div">
+    <form id="form1">
+        <p>用户名：<input name="userName" type="text" id="txtUserName" /></p>
+        <p>密　码：<input name="password" type="password" id="TextBox2" /></p>
+        <p><input type="button" value="登录" onclick="login()">
+        <br>
+        <p><input type="button" value="查询" onclick="search()" >
+    </form>
+
+</div>
+</body>
+</html>
